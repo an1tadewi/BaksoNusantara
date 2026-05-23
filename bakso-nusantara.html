@@ -5,496 +5,497 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bakso Nusantara – Cita Rasa Asli Indonesia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --merah:   #B5301C;
-      --merah2:  #8C1F0E;
-      --emas:    #D4943A;
-      --emas2:   #F2B84B;
-      --krem:    #FAF3E8;
-      --krem2:   #F0E6D0;
-      --coklat:  #3D1F0D;
-      --coklat2: #6B3A1F;
-      --putih:   #FFFCF5;
-      --hijau:   #25D366;
-      --shadow:  0 8px 40px rgba(61,31,13,.12);
+      --red:    #B8301A;
+      --red2:   #8C1F0A;
+      --amber:  #C87941;
+      --amber2: #E8A050;
+      --cream:  #F8F2E8;
+      --warm:   #F3EAD8;
+      --paper:  #FDFAF4;
+      --ink:    #2C1A0E;
+      --ink2:   #5C3A22;
+      --muted:  #9A7055;
+      --green:  #25D366;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:'DM Sans',sans-serif;background:var(--putih);color:var(--coklat);overflow-x:hidden}
+    body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar{width:6px}
-    ::-webkit-scrollbar-track{background:var(--krem)}
-    ::-webkit-scrollbar-thumb{background:var(--merah);border-radius:6px}
+    /* ── TOPBAR ── */
+    .topbar{
+      background:var(--red);color:rgba(255,255,255,.85);
+      text-align:center;font-size:.78rem;padding:.4rem 1rem;letter-spacing:.3px;
+    }
+    .topbar strong{color:#fff}
 
     /* ── NAV ── */
     nav{
-      position:fixed;inset:0 0 auto;z-index:200;
+      position:sticky;top:0;z-index:100;
+      background:var(--paper);
+      border-bottom:1px solid rgba(200,121,65,.2);
       display:flex;align-items:center;justify-content:space-between;
-      padding:.9rem 5vw;
-      background:rgba(255,252,245,.92);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(212,148,58,.15);
-      transition:box-shadow .3s;
+      padding:.85rem 5vw;
     }
-    nav.scrolled{box-shadow:0 4px 28px rgba(181,48,28,.10)}
-    .logo{display:flex;flex-direction:column;line-height:1}
-    .logo-main{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--merah);letter-spacing:.5px}
-    .logo-sub{font-size:.62rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--emas)}
-    .nav-links{display:flex;gap:2rem;list-style:none}
-    .nav-links a{text-decoration:none;color:var(--coklat2);font-weight:500;font-size:.88rem;position:relative;transition:color .2s}
-    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--merah);transition:width .25s}
-    .nav-links a:hover{color:var(--merah)}
-    .nav-links a:hover::after{width:100%}
-    .nav-btn{
-      background:var(--merah);color:#fff;
-      padding:.55rem 1.35rem;border-radius:4px;
-      text-decoration:none;font-weight:600;font-size:.85rem;letter-spacing:.3px;
-      transition:background .2s,transform .2s;
-      border:2px solid var(--merah);
+    .logo{text-decoration:none}
+    .logo-n{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:var(--ink);line-height:1}
+    .logo-n span{color:var(--red)}
+    .logo-t{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--amber);font-weight:600;margin-top:2px}
+    .nav-links{list-style:none;display:flex;gap:2rem}
+    .nav-links a{text-decoration:none;color:var(--ink2);font-size:.875rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--red)}
+    .btn-order{
+      background:var(--red);color:#fff;text-decoration:none;
+      padding:.5rem 1.3rem;border-radius:6px;font-size:.85rem;font-weight:600;
+      transition:background .2s,transform .15s;
     }
-    .nav-btn:hover{background:var(--merah2);transform:translateY(-1px)}
-    .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:4px}
-    .hbg span{width:22px;height:2px;background:var(--merah);border-radius:2px;transition:.3s;display:block}
-
-    /* ── MOBILE NAV ── */
+    .btn-order:hover{background:var(--red2);transform:translateY(-1px)}
+    .hbg{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:2px}
+    .hbg span{width:22px;height:2px;background:var(--ink);border-radius:2px;display:block}
     #mnav{
-      display:none;position:fixed;top:62px;inset:auto 0 auto;
-      background:rgba(255,252,245,.97);backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(212,148,58,.15);
-      padding:1.5rem 5vw;z-index:199;
+      display:none;background:var(--paper);padding:1.2rem 5vw;
+      border-bottom:1px solid rgba(200,121,65,.15);
     }
     #mnav ul{list-style:none;display:flex;flex-direction:column;gap:1rem}
-    #mnav a{text-decoration:none;color:var(--coklat2);font-weight:500}
-    #mnav .nav-btn{display:inline-block;margin-top:.5rem}
+    #mnav a{text-decoration:none;color:var(--ink2);font-weight:500}
+    #mnav .btn-order{display:inline-block;margin-top:.5rem}
 
     /* ── HERO ── */
     #hero{
-      min-height:100vh;
       display:grid;grid-template-columns:1fr 1fr;
-      align-items:center;
-      padding:6rem 5vw 4rem;
+      min-height:88vh;
+    }
+    .hero-left{
+      padding:5rem 5vw 4rem;
+      display:flex;flex-direction:column;justify-content:center;
+      background:var(--cream);
       position:relative;overflow:hidden;
-      background:var(--krem);
     }
-    /* batik-inspired bg pattern */
-    #hero::before{
-      content:'';position:absolute;inset:0;
-      background-image:
-        radial-gradient(circle at 20% 80%, rgba(181,48,28,.07) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(212,148,58,.10) 0%, transparent 45%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B5301C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events:none;
+    .hero-left::after{
+      content:'';position:absolute;bottom:-60px;right:-40px;
+      width:220px;height:220px;border-radius:50%;
+      background:rgba(184,48,26,.06);pointer-events:none;
     }
-    .hero-text{z-index:1;padding-right:2rem}
-    .tag-strip{
-      display:inline-flex;align-items:center;gap:.5rem;
-      background:rgba(181,48,28,.08);border:1px solid rgba(181,48,28,.18);
-      color:var(--merah);padding:.3rem .9rem;border-radius:3px;
-      font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    .hero-eyebrow{
+      display:flex;align-items:center;gap:.6rem;
       margin-bottom:1.4rem;
     }
-    .tag-dot{width:6px;height:6px;background:var(--merah);border-radius:50%;animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .eyebrow-line{width:28px;height:2px;background:var(--red);flex-shrink:0}
+    .eyebrow-text{font-size:.75rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--red)}
     h1{
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2.8rem,5.5vw,4.6rem);
-      font-weight:700;line-height:1.05;
-      color:var(--coklat);margin-bottom:1.3rem;
+      font-family:'Libre Baskerville',serif;
+      font-size:clamp(2.6rem,4.5vw,4rem);
+      font-weight:700;line-height:1.1;
+      color:var(--ink);margin-bottom:1.2rem;
     }
-    h1 em{font-style:italic;color:var(--merah)}
-    h1 .gold{color:var(--emas)}
-    .hero-desc{
-      font-size:1rem;line-height:1.8;color:var(--coklat2);
-      max-width:460px;margin-bottom:2rem;font-weight:300;
+    h1 em{font-style:italic;color:var(--red)}
+    .hero-lead{
+      font-size:1rem;line-height:1.8;color:var(--ink2);font-weight:300;
+      max-width:440px;margin-bottom:2.2rem;
     }
-    .cta-row{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
-    .btn-cta{
+    .cta-wrap{display:flex;gap:.9rem;flex-wrap:wrap}
+    .btn-main{
       display:inline-flex;align-items:center;gap:.55rem;
-      background:var(--merah);color:#fff;
-      padding:.85rem 2rem;border-radius:4px;
-      text-decoration:none;font-weight:700;font-size:.95rem;
-      box-shadow:0 6px 24px rgba(181,48,28,.28);
-      transition:background .2s,transform .2s,box-shadow .2s;
+      background:var(--red);color:#fff;text-decoration:none;
+      padding:.85rem 1.9rem;border-radius:6px;font-weight:600;font-size:.95rem;
+      box-shadow:0 4px 18px rgba(184,48,26,.25);
+      transition:background .2s,transform .15s,box-shadow .2s;
     }
-    .btn-cta:hover{background:var(--merah2);transform:translateY(-2px);box-shadow:0 10px 32px rgba(181,48,28,.38)}
-    .btn-ghost{
+    .btn-main:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 8px 26px rgba(184,48,26,.32)}
+    .btn-outline{
       display:inline-flex;align-items:center;gap:.5rem;
-      color:var(--merah);padding:.85rem 2rem;border-radius:4px;
-      text-decoration:none;font-weight:600;font-size:.95rem;
-      border:1.5px solid rgba(181,48,28,.3);
-      transition:all .2s;
+      color:var(--ink2);text-decoration:none;
+      padding:.85rem 1.9rem;border-radius:6px;font-weight:500;font-size:.95rem;
+      border:1.5px solid rgba(92,58,34,.25);
+      transition:border-color .2s,color .2s;
     }
-    .btn-ghost:hover{border-color:var(--merah);background:rgba(181,48,28,.04)}
-    .hero-stats{
-      display:flex;gap:2.5rem;margin-top:2.5rem;
-      padding-top:2rem;border-top:1px solid rgba(181,48,28,.12);
+    .btn-outline:hover{border-color:var(--red);color:var(--red)}
+    .hero-nums{
+      display:flex;gap:2.2rem;margin-top:2.5rem;padding-top:2rem;
+      border-top:1px solid rgba(200,121,65,.2);
     }
-    .hs-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--merah)}
-    .hs-lbl{font-size:.75rem;font-weight:600;letter-spacing:.5px;color:var(--coklat2);text-transform:uppercase}
+    .hn-val{font-family:'Libre Baskerville',serif;font-size:1.75rem;font-weight:700;color:var(--red)}
+    .hn-lbl{font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-top:.1rem}
 
-    /* hero right */
-    .hero-right{position:relative;display:flex;justify-content:center;align-items:center;z-index:1}
-    .hero-bowl{
-      width:clamp(260px,36vw,460px);height:clamp(260px,36vw,460px);
-      background:linear-gradient(145deg,#f5d99a,#e07c3a,#b5301c);
-      border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      font-size:clamp(5.5rem,12vw,10rem);
-      box-shadow:0 24px 64px rgba(181,48,28,.30),inset 0 -12px 32px rgba(0,0,0,.08);
-      animation:bowlFloat 5s ease-in-out infinite;
-      position:relative;
+    .hero-right{position:relative;overflow:hidden}
+    .hero-right img{
+      width:100%;height:100%;object-fit:cover;display:block;
     }
-    .hero-bowl::before{
-      content:'';position:absolute;inset:-16px;border-radius:50%;
-      border:1px solid rgba(212,148,58,.25);
-      animation:orbSpin 25s linear infinite;
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to right, rgba(248,242,232,.35) 0%, transparent 40%);
     }
-    .hero-bowl::after{
-      content:'';position:absolute;inset:-32px;border-radius:50%;
-      border:1px dashed rgba(212,148,58,.12);
-      animation:orbSpin 35s linear infinite reverse;
+    .hero-tag{
+      position:absolute;bottom:2rem;left:2rem;
+      background:rgba(253,250,244,.92);backdrop-filter:blur(8px);
+      border-radius:8px;padding:.8rem 1.1rem;
+      border:1px solid rgba(200,121,65,.2);
+      box-shadow:0 4px 20px rgba(44,26,14,.08);
     }
-    @keyframes bowlFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-18px) rotate(1deg)}}
-    @keyframes orbSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    .htag-name{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:var(--ink)}
+    .htag-sub{font-size:.75rem;color:var(--muted);font-weight:400;margin-top:.15rem}
 
-    .pip{
-      position:absolute;background:#fff;
-      border-radius:10px;padding:.5rem .9rem;
-      box-shadow:0 4px 20px rgba(0,0,0,.10);
-      display:flex;align-items:center;gap:.5rem;
-      font-size:.78rem;font-weight:700;white-space:nowrap;
+    /* ── STRIP ── */
+    .strip{
+      background:var(--red);color:rgba(255,255,255,.85);
+      display:flex;justify-content:center;align-items:center;gap:3rem;
+      padding:.9rem 5vw;flex-wrap:wrap;
     }
-    .pip.p1{top:12%;right:-2%;color:var(--merah);animation:pipFloat 3.8s ease-in-out infinite}
-    .pip.p2{bottom:18%;left:-4%;color:var(--emas);animation:pipFloat 3.2s ease-in-out infinite 1.2s}
-    .pip.p3{bottom:42%;right:-8%;color:var(--coklat2);animation:pipFloat 4.2s ease-in-out infinite .6s;font-size:.72rem}
-    @keyframes pipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    .strip-item{display:flex;align-items:center;gap:.55rem;font-size:.83rem;font-weight:500}
+    .strip-item::before{content:'✓';font-weight:700;color:var(--amber2)}
 
-    /* ── DIVIDER ── */
-    .wave-div{
-      height:60px;background:var(--krem);
-      clip-path:ellipse(55% 100% at 50% 0%);
+    /* ── SECTION COMMON ── */
+    .sec{padding:5rem 5vw}
+    .sec-label{
+      display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem;
     }
+    .sec-label::before{content:'';width:22px;height:2px;background:var(--amber);flex-shrink:0}
+    .sec-label span{font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--amber)}
+    .sec-title{
+      font-family:'Libre Baskerville',serif;
+      font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;line-height:1.15;
+      color:var(--ink);
+    }
+    .sec-title em{font-style:italic;color:var(--red)}
+    .sec-body{font-size:.95rem;line-height:1.8;color:var(--ink2);font-weight:300}
 
     /* ── TENTANG ── */
-    #tentang{
-      background:var(--putih);padding:5rem 5vw;
-      position:relative;
-    }
-    #tentang::after{
-      content:'NUSANTARA';
-      position:absolute;right:-2rem;top:50%;transform:translateY(-50%) rotate(90deg);
-      font-family:'Cormorant Garamond',serif;font-size:8rem;font-weight:700;
-      color:rgba(181,48,28,.03);pointer-events:none;letter-spacing:8px;white-space:nowrap;
-    }
-    .tentang-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1160px;margin:0 auto}
-    .tentang-img-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1rem;height:420px}
-    .mosaic-tile{
-      border-radius:14px;display:flex;align-items:center;justify-content:center;
-      font-size:3.5rem;overflow:hidden;transition:transform .35s;
-    }
-    .mosaic-tile:hover{transform:scale(1.03)}
-    .mt1{background:linear-gradient(135deg,#f5d99a,#e07c3a);grid-row:1/3;font-size:5rem}
-    .mt2{background:linear-gradient(135deg,#ffecd1,#ffb347)}
-    .mt3{background:linear-gradient(135deg,#ffe0cc,#e05a2b)}
-    .lbl{
-      display:inline-block;color:var(--emas);font-size:.72rem;font-weight:700;
-      letter-spacing:3px;text-transform:uppercase;margin-bottom:.7rem;
-    }
-    .sec-title{
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2rem,3.8vw,3rem);font-weight:700;line-height:1.1;
-      color:var(--coklat);margin-bottom:1rem;
-    }
-    .sec-title em{color:var(--merah);font-style:italic}
-    .sec-desc{font-size:.95rem;line-height:1.8;color:var(--coklat2);font-weight:300;margin-bottom:1.8rem}
-    .feat-list{display:flex;flex-direction:column;gap:1rem}
-    .feat-item{display:flex;gap:1rem;align-items:flex-start}
+    #tentang{background:var(--paper)}
+    .tentang-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto}
+    .tentang-imgs{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+    .t-img{border-radius:10px;overflow:hidden;background:#e8dcc8}
+    .t-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .t-img:hover img{transform:scale(1.04)}
+    .t-img.tall{grid-row:span 2}
+    .t-img.tall img{height:100%}
+    .t-img:not(.tall){height:180px}
+    .tentang-text .sec-title{margin-bottom:1rem}
+    .tentang-text .sec-body{margin-bottom:1.8rem;max-width:460px}
+    .feat{display:flex;flex-direction:column;gap:.9rem}
+    .feat-row{display:flex;gap:1rem;align-items:flex-start}
     .feat-ic{
-      width:46px;height:46px;min-width:46px;border-radius:10px;
-      background:rgba(181,48,28,.07);
-      display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+      width:40px;height:40px;min-width:40px;border-radius:8px;
+      background:rgba(184,48,26,.08);display:flex;align-items:center;justify-content:center;font-size:1.1rem;
     }
-    .feat-item h5{font-size:.92rem;font-weight:700;color:var(--coklat);margin-bottom:.2rem}
-    .feat-item p{font-size:.83rem;color:var(--coklat2);line-height:1.55}
+    .feat-row h5{font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.15rem}
+    .feat-row p{font-size:.83rem;color:var(--muted);line-height:1.55;font-weight:300}
 
     /* ── MENU ── */
-    #menu{background:var(--krem);padding:5rem 5vw}
-    .menu-hd{max-width:1160px;margin:0 auto 3rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem}
-    .menu-hd-left .sec-title{margin-bottom:.3rem}
-    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.4rem;max-width:1160px;margin:0 auto}
-    .mcard{
-      background:#fff;border-radius:18px;overflow:hidden;
-      box-shadow:0 4px 24px rgba(61,31,13,.07);
+    #menu{background:var(--warm)}
+    .menu-top{
+      max-width:1200px;margin:0 auto 2.5rem;
+      display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;
+    }
+    .menu-note{font-size:.83rem;color:var(--muted);font-weight:300;max-width:260px;text-align:right}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1.2rem;max-width:1200px;margin:0 auto}
+    .mc{
+      background:var(--paper);border-radius:12px;overflow:hidden;
+      border:1px solid rgba(200,121,65,.1);
       transition:transform .3s,box-shadow .3s;
-      border:1px solid rgba(212,148,58,.08);
     }
-    .mcard:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(181,48,28,.14)}
-    .mcard-img{
-      height:175px;display:flex;align-items:center;justify-content:center;
-      font-size:4.8rem;position:relative;
+    .mc:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(44,26,14,.1)}
+    .mc-img{height:200px;overflow:hidden;position:relative;background:#e8dcc8}
+    .mc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .mc:hover .mc-img img{transform:scale(1.06)}
+    .mc-badge{
+      position:absolute;top:10px;left:10px;
+      background:var(--red);color:#fff;
+      font-size:.68rem;font-weight:700;letter-spacing:.4px;
+      padding:.22rem .6rem;border-radius:4px;
     }
-    .mbadge{
-      position:absolute;top:12px;left:12px;
-      background:var(--merah);color:#fff;
-      font-size:.68rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
-      padding:.25rem .65rem;border-radius:3px;
+    .mc-body{padding:1.1rem 1.2rem 1.3rem}
+    .mc-name{font-family:'Libre Baskerville',serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:.3rem}
+    .mc-desc{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:.9rem;font-weight:300}
+    .mc-foot{display:flex;justify-content:space-between;align-items:center}
+    .mc-price{font-size:1.05rem;font-weight:700;color:var(--red);font-family:'Libre Baskerville',serif}
+    .mc-btn{
+      background:var(--red);color:#fff;border:none;cursor:pointer;
+      padding:.4rem .95rem;border-radius:5px;font-size:.78rem;font-weight:600;
+      transition:background .2s;letter-spacing:.2px;
     }
-    .mcard-body{padding:1.3rem}
-    .mcard-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--coklat);margin-bottom:.35rem}
-    .mcard-desc{font-size:.83rem;color:var(--coklat2);line-height:1.55;margin-bottom:.9rem;font-weight:300}
-    .mcard-foot{display:flex;justify-content:space-between;align-items:center}
-    .mcard-price{font-size:1.05rem;font-weight:800;color:var(--merah)}
-    .mcard-btn{
-      background:var(--merah);color:#fff;border:none;
-      border-radius:4px;padding:.4rem 1rem;font-size:.8rem;font-weight:700;
-      cursor:pointer;transition:background .2s;letter-spacing:.3px;
-    }
-    .mcard-btn:hover{background:var(--merah2)}
+    .mc-btn:hover{background:var(--red2)}
 
-    /* ── TESTI ── */
-    #testimoni{background:var(--putih);padding:5rem 5vw}
-    .testi-hd{max-width:1160px;margin:0 auto 3rem;text-align:center}
-    .testi-hd .sec-desc{margin:0 auto;max-width:520px}
-    .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem;max-width:1160px;margin:0 auto}
-    .tcard{
-      background:var(--krem);border-radius:18px;padding:2rem;
-      border:1px solid rgba(212,148,58,.12);
-      transition:transform .3s,box-shadow .3s;
-      position:relative;overflow:hidden;
+    /* ── ABOUT STRIP (full-bleed photo) ── */
+    .photo-strip{
+      position:relative;height:380px;overflow:hidden;
     }
-    .tcard::before{
-      content:'"';
-      position:absolute;top:-10px;right:16px;
-      font-family:'Cormorant Garamond',serif;font-size:7rem;
-      color:rgba(181,48,28,.07);line-height:1;pointer-events:none;
+    .photo-strip img{width:100%;height:100%;object-fit:cover;display:block}
+    .photo-strip-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to right, rgba(44,26,14,.72) 0%, rgba(44,26,14,.15) 60%, transparent);
+      display:flex;align-items:center;padding:0 8vw;
     }
-    .tcard:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-    .tcard-stars{color:var(--emas2);font-size:.95rem;margin-bottom:.8rem;letter-spacing:2px}
-    .tcard-text{font-size:.92rem;color:var(--coklat2);line-height:1.75;margin-bottom:1.4rem;font-weight:300}
-    .tcard-prof{display:flex;align-items:center;gap:.9rem}
-    .tcard-av{
-      width:44px;height:44px;border-radius:50%;
-      background:linear-gradient(135deg,var(--emas2),var(--merah));
+    .pso-text{max-width:520px;color:#fff}
+    .pso-text .sec-label::before{background:var(--amber2)}
+    .pso-text .sec-label span{color:var(--amber2)}
+    .pso-text .sec-title{color:#fff;margin:.5rem 0 1rem}
+    .pso-text .sec-title em{color:var(--amber2)}
+    .pso-text p{color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.8;font-weight:300}
+
+    /* ── TESTIMONI ── */
+    #testimoni{background:var(--paper)}
+    .testi-hd{max-width:1200px;margin:0 auto 3rem;text-align:center}
+    .testi-hd .sec-label{justify-content:center}
+    .testi-hd .sec-label::before{display:none}
+    .testi-hd .sec-title{margin-top:.4rem}
+    .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.2rem;max-width:1200px;margin:0 auto}
+    .tc{
+      background:var(--cream);border-radius:12px;padding:1.8rem;
+      border:1px solid rgba(200,121,65,.1);
+      transition:transform .3s;
+    }
+    .tc:hover{transform:translateY(-4px)}
+    .tc-stars{color:var(--amber);font-size:.9rem;letter-spacing:2px;margin-bottom:.9rem}
+    .tc-text{font-size:.92rem;color:var(--ink2);line-height:1.75;margin-bottom:1.3rem;font-weight:300;font-style:italic}
+    .tc-sep{width:28px;height:1.5px;background:rgba(200,121,65,.3);margin-bottom:1rem}
+    .tc-prof{display:flex;align-items:center;gap:.85rem}
+    .tc-av{
+      width:40px;height:40px;border-radius:50%;overflow:hidden;
+      background:linear-gradient(135deg,var(--amber2),var(--red));
       display:flex;align-items:center;justify-content:center;
-      color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;
+      font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:#fff;flex-shrink:0;
     }
-    .tcard-name{font-weight:700;font-size:.9rem;color:var(--coklat)}
-    .tcard-loc{font-size:.75rem;color:var(--coklat2)}
+    .tc-name{font-weight:600;font-size:.88rem;color:var(--ink)}
+    .tc-loc{font-size:.75rem;color:var(--muted)}
 
     /* ── KONTAK ── */
-    #kontak{
-      background:var(--krem2);padding:5rem 5vw;
-      position:relative;overflow:hidden;
+    #kontak{background:var(--warm)}
+    .kontak-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1200px;margin:0 auto;align-items:start}
+    .kontak-text .sec-title{margin:.5rem 0 .8rem}
+    .kontak-text .sec-body{max-width:400px;margin-bottom:2rem}
+    .krows{display:flex;flex-direction:column;gap:1.1rem}
+    .krow{display:flex;gap:.9rem;align-items:flex-start}
+    .krow-ic{
+      width:42px;height:42px;min-width:42px;border-radius:9px;
+      background:var(--red);display:flex;align-items:center;justify-content:center;font-size:1.1rem;
     }
-    #kontak::before{
-      content:'';position:absolute;top:-100px;right:-100px;
-      width:400px;height:400px;border-radius:50%;
-      background:radial-gradient(circle,rgba(181,48,28,.07),transparent 70%);
-      pointer-events:none;
-    }
-    .kontak-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1160px;margin:0 auto;align-items:start}
-    .kontak-items{display:flex;flex-direction:column;gap:1.3rem;margin-top:2rem}
-    .k-item{display:flex;gap:1rem;align-items:flex-start}
-    .k-ic{
-      width:48px;height:48px;min-width:48px;border-radius:12px;
-      background:linear-gradient(135deg,var(--emas2),var(--merah));
-      display:flex;align-items:center;justify-content:center;font-size:1.2rem;
-      box-shadow:0 4px 16px rgba(181,48,28,.2);
-    }
-    .k-item strong{display:block;font-size:.88rem;font-weight:700;color:var(--coklat);margin-bottom:.25rem}
-    .k-item span{font-size:.85rem;color:var(--coklat2);line-height:1.55;font-weight:300}
+    .krow strong{display:block;font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+    .krow span{font-size:.83rem;color:var(--muted);line-height:1.55;font-weight:300}
+    .krow a{color:var(--red);text-decoration:none;font-weight:500}
     .btn-wa{
       display:inline-flex;align-items:center;gap:.7rem;
-      background:#25D366;color:#fff;
-      padding:1rem 2.2rem;border-radius:6px;margin-top:2rem;
-      text-decoration:none;font-weight:700;font-size:.95rem;
-      box-shadow:0 6px 28px rgba(37,211,102,.28);
-      transition:background .2s,transform .2s,box-shadow .2s;
+      background:var(--green);color:#fff;text-decoration:none;
+      padding:.9rem 2rem;border-radius:6px;font-weight:600;font-size:.95rem;margin-top:2rem;
+      box-shadow:0 4px 20px rgba(37,211,102,.25);
+      transition:background .2s,transform .15s,box-shadow .2s;
     }
-    .btn-wa:hover{background:#1aab52;transform:translateY(-2px);box-shadow:0 10px 36px rgba(37,211,102,.36)}
+    .btn-wa:hover{background:#1aab52;transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.32)}
 
-    .jam-box{
-      background:#fff;border-radius:18px;padding:2.2rem;
-      border:1px solid rgba(212,148,58,.12);
-      box-shadow:0 4px 24px rgba(61,31,13,.06);
+    /* kontak right: photo + jam */
+    .kontak-right{}
+    .kontak-photo{
+      width:100%;height:220px;border-radius:12px;overflow:hidden;margin-bottom:1.5rem;
+      background:#e8dcc8;
     }
-    .jam-box h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--coklat);margin-bottom:1.5rem}
-    .jam-row{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:.75rem 0;border-bottom:1px solid rgba(212,148,58,.10);
+    .kontak-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .jam-box{background:var(--paper);border-radius:12px;padding:1.6rem;border:1px solid rgba(200,121,65,.12)}
+    .jam-box h3{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:1.1rem}
+    .jam-rows{display:flex;flex-direction:column;gap:.55rem}
+    .jr{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid rgba(200,121,65,.08)}
+    .jr:last-child{border-bottom:none}
+    .jr-day{font-size:.84rem;color:var(--ink2);font-weight:400}
+    .jr-time{
+      font-size:.82rem;font-weight:600;color:var(--ink);
+      background:rgba(184,48,26,.07);padding:.22rem .7rem;border-radius:20px;
     }
-    .jam-row:last-child{border-bottom:none}
-    .jam-day{font-size:.85rem;font-weight:500;color:var(--coklat2)}
-    .jam-time{
-      font-size:.88rem;font-weight:700;color:var(--coklat);
-      background:rgba(181,48,28,.06);padding:.3rem .75rem;border-radius:50px;
-    }
-    .jam-time.open{background:rgba(37,211,102,.10);color:#1a8040}
-    .kontak-tip{
-      margin-top:1.5rem;background:linear-gradient(135deg,rgba(181,48,28,.06),rgba(212,148,58,.06));
-      border-radius:12px;padding:1.1rem;display:flex;gap:.8rem;align-items:center;
-      border:1px solid rgba(212,148,58,.12);
-    }
-    .kontak-tip span{font-size:.83rem;color:var(--coklat2);line-height:1.5;font-weight:300}
+    .jr-time.open{background:rgba(37,211,102,.1);color:#1a8040}
 
     /* ── FOOTER ── */
     footer{
-      background:var(--coklat);padding:2.5rem 5vw;
-      color:rgba(255,252,245,.5);
+      background:var(--ink);color:rgba(253,250,244,.5);
+      padding:2.2rem 5vw;
     }
     .footer-inner{
-      max-width:1160px;margin:0 auto;
+      max-width:1200px;margin:0 auto;
       display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;
     }
-    .f-logo-main{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff}
-    .f-logo-sub{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--emas2);font-weight:600}
-    .f-copy{font-size:.82rem}
-    .f-socials{display:flex;gap:.7rem}
-    .f-soc{
-      width:38px;height:38px;border-radius:8px;
-      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);
-      display:flex;align-items:center;justify-content:center;
-      text-decoration:none;color:rgba(255,252,245,.7);font-size:1rem;
-      transition:background .2s,transform .2s,color .2s;
+    .f-logo{font-family:'Libre Baskerville',serif;font-size:1.2rem;font-weight:700;color:rgba(253,250,244,.9)}
+    .f-logo span{color:var(--amber2)}
+    .f-copy{font-size:.8rem}
+    .f-soc{display:flex;gap:.6rem}
+    .fsb{
+      width:36px;height:36px;border-radius:7px;
+      background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;
+      color:rgba(253,250,244,.6);text-decoration:none;font-size:.95rem;
+      transition:background .2s,color .2s,transform .15s;
     }
-    .f-soc:hover{background:var(--merah);color:#fff;transform:translateY(-2px)}
+    .fsb:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
 
     /* ── REVEAL ── */
-    .rv{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease}
+    .rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
     .rv.in{opacity:1;transform:none}
-    .rv-l{opacity:0;transform:translateX(-30px);transition:opacity .65s ease,transform .65s ease}
+    .rv-l{opacity:0;transform:translateX(-26px);transition:opacity .65s ease,transform .65s ease}
     .rv-l.in{opacity:1;transform:none}
-    .rv-r{opacity:0;transform:translateX(30px);transition:opacity .65s ease,transform .65s ease}
+    .rv-r{opacity:0;transform:translateX(26px);transition:opacity .65s ease,transform .65s ease}
     .rv-r.in{opacity:1;transform:none}
 
     /* ── RESPONSIVE ── */
-    @media(max-width:940px){
-      #hero{grid-template-columns:1fr;padding:7rem 5vw 4rem}
-      .hero-right{order:-1}
-      .hero-bowl{width:220px;height:220px;font-size:5rem}
+    @media(max-width:960px){
+      #hero{grid-template-columns:1fr}
+      .hero-right{height:45vw;min-height:280px}
       .tentang-grid,.kontak-grid{grid-template-columns:1fr;gap:2.5rem}
-      .nav-links,.nav-btn{display:none}
+      .nav-links,.btn-order{display:none}
       .hbg{display:flex}
-      .hero-text{padding-right:0}
+      .menu-note{text-align:left}
     }
     @media(max-width:600px){
-      section{padding:3.5rem 5vw}
-      .cta-row{flex-direction:column}
-      .btn-cta,.btn-ghost{width:100%;justify-content:center}
-      .hero-stats{gap:1.5rem}
-      .menu-hd{flex-direction:column;align-items:flex-start}
+      .sec{padding:3.5rem 5vw}
+      .cta-wrap{flex-direction:column}
+      .btn-main,.btn-outline{width:100%;justify-content:center}
+      .hero-nums{flex-wrap:wrap;gap:1.2rem}
+      .photo-strip{height:auto}
+      .photo-strip-overlay{padding:3rem 6vw;position:relative;background:rgba(44,26,14,.82)}
+      .photo-strip img{display:none}
+      .strip{gap:1.2rem}
       .footer-inner{flex-direction:column;text-align:center}
     }
+
+    /* Lazy image placeholder */
+    .img-ph{background:#e8dcc8;display:block}
   </style>
 </head>
 <body>
 
+<!-- TOPBAR -->
+<div class="topbar">🛵 Gratis Ongkir radius 3km · <strong>WhatsApp: 0812-3456-7890</strong> · Buka setiap hari 08.00–21.00</div>
+
 <!-- NAV -->
-<nav id="navbar">
-  <div class="logo">
-    <div class="logo-main">Bakso Nusantara</div>
-    <div class="logo-sub">Cita Rasa Asli Indonesia</div>
-  </div>
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-n">Bakso <span>Nusantara</span></div>
+    <div class="logo-t">Cita Rasa Asli Indonesia</div>
+  </a>
   <ul class="nav-links">
     <li><a href="#tentang">Tentang</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#testimoni">Testimoni</a></li>
     <li><a href="#kontak">Kontak</a></li>
   </ul>
-  <a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20pesan%20di%20Bakso%20Nusantara." class="nav-btn" target="_blank">Pesan Sekarang</a>
-  <button class="hbg" onclick="toggleNav()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20pesan%20bakso." class="btn-order" target="_blank">Pesan Sekarang</a>
+  <button class="hbg" onclick="toggleNav()"><span></span><span></span><span></span></button>
 </nav>
-
 <div id="mnav">
   <ul>
     <li><a href="#tentang" onclick="closeNav()">Tentang Kami</a></li>
     <li><a href="#menu" onclick="closeNav()">Menu</a></li>
     <li><a href="#testimoni" onclick="closeNav()">Testimoni</a></li>
     <li><a href="#kontak" onclick="closeNav()">Kontak</a></li>
-    <li><a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20pesan%20di%20Bakso%20Nusantara." class="nav-btn" target="_blank">Pesan Sekarang</a></li>
+    <li><a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20pesan%20bakso." class="btn-order" target="_blank">Pesan Sekarang</a></li>
   </ul>
 </div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-text">
-    <div class="tag-strip"><span class="tag-dot"></span> Warung Asli Nusantara</div>
-    <h1>
-      Bakso <em>Hangat,</em><br>
-      Kuah <span class="gold">Penuh</span><br>
-      Cita Rasa
-    </h1>
-    <p class="hero-desc">
-      Dari dapur tradisional ke meja Anda — Bakso Nusantara menghadirkan
-      cita rasa autentik Indonesia dengan daging pilihan, kuah kaldu sapi
-      perlahan-lahan, dan harga yang bersahabat untuk semua kalangan.
-    </p>
-    <div class="cta-row">
-      <a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20pesan%20di%20Bakso%20Nusantara." class="btn-cta" target="_blank">
-        🛵 Pesan via WhatsApp
-      </a>
-      <a href="#menu" class="btn-ghost">🍜 Lihat Menu</a>
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">Warung Asli Sejak 2009</div>
     </div>
-    <div class="hero-stats">
-      <div><div class="hs-num">1000+</div><div class="hs-lbl">Porsi / Hari</div></div>
-      <div><div class="hs-num">15 Thn</div><div class="hs-lbl">Pengalaman</div></div>
-      <div><div class="hs-num">4.9 ⭐</div><div class="hs-lbl">Rating</div></div>
+    <h1>Bakso Hangat,<br>Kuah <em>Asli</em><br>Nusantara</h1>
+    <p class="hero-lead">
+      Daging sapi segar, kaldu tulang sumsum dimasak 10 jam, dan bumbu rempah pilihan.
+      Satu mangkuk yang menghangatkan jiwa — seperti masakan rumah sendiri.
+    </p>
+    <div class="cta-wrap">
+      <a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20pesan%20bakso." class="btn-main" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pesan via WhatsApp
+      </a>
+      <a href="#menu" class="btn-outline">Lihat Menu →</a>
+    </div>
+    <div class="hero-nums">
+      <div><div class="hn-val">15+</div><div class="hn-lbl">Tahun Berjualan</div></div>
+      <div><div class="hn-val">1.000+</div><div class="hn-lbl">Porsi / Hari</div></div>
+      <div><div class="hn-val">4.9⭐</div><div class="hn-lbl">Rating Google</div></div>
     </div>
   </div>
-
   <div class="hero-right">
-    <div class="hero-bowl">
-      🍲
-      <div class="pip p1">🥩 Daging Segar</div>
-      <div class="pip p2">🫕 Kuah Gurih</div>
-      <div class="pip p3">✅ Halal & Higienis</div>
+    <!-- Real photo: bakso bowl from Unsplash (Muhammad Arifin Nursalim) -->
+    <img
+      src="https://images.unsplash.com/photo-1687425973269-af0d62587769?auto=format&fit=crop&w=900&q=80"
+      alt="Semangkuk bakso sapi hangat dengan kuah bening khas Nusantara"
+      loading="eager"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-tag">
+      <div class="htag-name">Bakso Urat Spesial</div>
+      <div class="htag-sub">Menu paling favorit pelanggan kami</div>
     </div>
   </div>
 </section>
 
-<div class="wave-div"></div>
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item">Daging Sapi Segar Pilihan</div>
+  <div class="strip-item">Kaldu Dimasak 10 Jam</div>
+  <div class="strip-item">Halal & Tanpa Pengawet</div>
+  <div class="strip-item">Antar ke Lokasi Anda</div>
+</div>
 
 <!-- TENTANG -->
-<section id="tentang">
+<section id="tentang" class="sec">
   <div class="tentang-grid">
-    <div class="tentang-img-mosaic rv-l">
-      <div class="mosaic-tile mt1">🍲</div>
-      <div class="mosaic-tile mt2">🥩</div>
-      <div class="mosaic-tile mt3">🫕</div>
+    <div class="tentang-imgs rv-l">
+      <!-- Real photos from Unsplash - Indonesian food / meatball soup -->
+      <div class="t-img tall">
+        <img
+          src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=500&q=80"
+          alt="Bakso dalam mangkuk dengan kuah segar"
+          loading="lazy"
+        />
+      </div>
+      <div class="t-img">
+        <img
+          src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=500&q=80"
+          alt="Daging sapi segar pilihan"
+          loading="lazy"
+        />
+      </div>
+      <div class="t-img">
+        <img
+          src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=500&q=80"
+          alt="Kuah bakso panas mendidih"
+          loading="lazy"
+        />
+      </div>
     </div>
     <div class="rv-r">
-      <span class="lbl">Tentang Kami</span>
-      <h2 class="sec-title">Warung Kami,<br><em>Kenangan Anda</em></h2>
-      <p class="sec-desc">
-        Bakso Nusantara berdiri sejak 2009, berawal dari gerobak kecil di pojok pasar
-        hingga kini menjadi warung langganan ribuan keluarga. Setiap mangkuk adalah
-        hasil kerja keras dan cinta untuk cita rasa Indonesia yang sesungguhnya.
+      <div class="sec-label"><span>Tentang Kami</span></div>
+      <h2 class="sec-title" style="margin:.5rem 0 1rem">Bukan Sekadar Bakso,<br><em>Ini Soal Kenangan</em></h2>
+      <p class="sec-body" style="margin-bottom:1.8rem">
+        Bakso Nusantara berdiri sejak 2009, berawal dari satu gerobak kecil
+        di sudut pasar Condong Catur. Hari ini, ribuan pelanggan masih setia
+        datang — bukan karena apa-apa, tapi karena rasanya tidak pernah berubah.
       </p>
-      <div class="feat-list">
-        <div class="feat-item">
+      <div class="feat">
+        <div class="feat-row">
           <div class="feat-ic">🥩</div>
           <div>
-            <h5>Daging Sapi Pilihan</h5>
-            <p>Dipilih segar setiap pagi dari pemasok lokal terpercaya untuk tekstur kenyal sempurna.</p>
+            <h5>Daging Sapi Lokal Segar</h5>
+            <p>Didatangkan segar tiap pagi dari pemasok terpercaya, tidak pernah beku.</p>
           </div>
         </div>
-        <div class="feat-item">
+        <div class="feat-row">
           <div class="feat-ic">🕐</div>
           <div>
-            <h5>Kaldu Dimasak 10 Jam</h5>
-            <p>Tulang sumsum sapi direbus perlahan menghasilkan kuah bening kaya rasa yang khas.</p>
+            <h5>Kaldu Tulang 10 Jam</h5>
+            <p>Tulang sumsum sapi direbus perlahan sejak subuh — itulah rahasia kuah bening yang gurih.</p>
           </div>
         </div>
-        <div class="feat-item">
-          <div class="feat-ic">💚</div>
+        <div class="feat-row">
+          <div class="feat-ic">✅</div>
           <div>
-            <h5>Halal & Tanpa Pengawet</h5>
-            <p>Bersertifikat halal MUI, bebas MSG berlebih dan bahan pengawet — aman untuk keluarga.</p>
+            <h5>Halal, Higienis, No MSG Berlebih</h5>
+            <p>Bersertifikat halal MUI. Aman untuk seluruh keluarga, termasuk anak-anak.</p>
+          </div>
+        </div>
+        <div class="feat-row">
+          <div class="feat-ic">🛵</div>
+          <div>
+            <h5>Antar Cepat 30 Menit</h5>
+            <p>Pesan via WhatsApp, tiba masih panas. Radius 5km dari warung kami.</p>
           </div>
         </div>
       </div>
@@ -503,71 +504,91 @@
 </section>
 
 <!-- MENU -->
-<section id="menu">
-  <div class="menu-hd">
-    <div class="menu-hd-left rv">
-      <span class="lbl">Menu Favorit</span>
-      <h2 class="sec-title">Pilihan <em>Istimewa</em><br>Untuk Anda</h2>
+<section id="menu" class="sec">
+  <div class="menu-top rv">
+    <div>
+      <div class="sec-label"><span>Menu Favorit</span></div>
+      <h2 class="sec-title" style="margin-top:.4rem">Yang Bikin<br><em>Ketagihan</em></h2>
     </div>
-    <p class="rv" style="color:var(--coklat2);font-size:.88rem;max-width:280px;text-align:right;font-weight:300">Semua menu dibuat segar setiap hari, tanpa sisa kemarin.</p>
+    <p class="menu-note">Semua dibuat segar setiap hari. Tidak ada sisa kemarin.</p>
   </div>
   <div class="menu-grid">
 
-    <div class="mcard rv" style="transition-delay:.05s">
-      <div class="mcard-img" style="background:linear-gradient(140deg,#ffd6a5,#e07c3a)">
-        🍢
-        <span class="mbadge">Best Seller</span>
+    <div class="mc rv" style="transition-delay:.05s">
+      <div class="mc-img">
+        <!-- Unsplash: meatball soup close-up -->
+        <img
+          src="https://images.unsplash.com/photo-1686916890474-db40e9b5534c?auto=format&fit=crop&w=600&q=80"
+          alt="Bakso Urat – bakso dengan serat urat sapi kenyal"
+          loading="lazy"
+        />
+        <span class="mc-badge">Best Seller</span>
       </div>
-      <div class="mcard-body">
-        <div class="mcard-name">Bakso Urat</div>
-        <div class="mcard-desc">Tekstur kenyal berserat khas urat sapi, tenggelam dalam kuah kaldu bening yang menghangatkan.</div>
-        <div class="mcard-foot">
-          <span class="mcard-price">Rp 15.000</span>
-          <button class="mcard-btn" onclick="order('Bakso Urat')">Pesan</button>
+      <div class="mc-body">
+        <div class="mc-name">Bakso Urat</div>
+        <div class="mc-desc">Bakso khas dengan serat urat sapi yang kenyal. Dipadu kuah kaldu bening panas yang langsung menghangatkan.</div>
+        <div class="mc-foot">
+          <span class="mc-price">Rp 15.000</span>
+          <button class="mc-btn" onclick="order('Bakso Urat')">Pesan</button>
         </div>
       </div>
     </div>
 
-    <div class="mcard rv" style="transition-delay:.12s">
-      <div class="mcard-img" style="background:linear-gradient(140deg,#ffb347,#d4471a)">
-        🍜
-        <span class="mbadge" style="background:var(--emas)">Jumbo</span>
+    <div class="mc rv" style="transition-delay:.1s">
+      <div class="mc-img">
+        <!-- Unsplash: large meatball -->
+        <img
+          src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=600&q=80"
+          alt="Bakso Jumbo – satu bakso besar penuh daging"
+          loading="lazy"
+        />
+        <span class="mc-badge" style="background:var(--amber)">Jumbo</span>
       </div>
-      <div class="mcard-body">
-        <div class="mcard-name">Bakso Jumbo</div>
-        <div class="mcard-desc">Satu bakso besar penuh daging — sekali gigit langsung kenyang, dijamin tidak menyesal!</div>
-        <div class="mcard-foot">
-          <span class="mcard-price">Rp 20.000</span>
-          <button class="mcard-btn" onclick="order('Bakso Jumbo')">Pesan</button>
+      <div class="mc-body">
+        <div class="mc-name">Bakso Jumbo</div>
+        <div class="mc-desc">Satu bakso sebesar genggaman, penuh daging sapi cincang padat. Satu saja sudah bikin kenyang seharian.</div>
+        <div class="mc-foot">
+          <span class="mc-price">Rp 20.000</span>
+          <button class="mc-btn" onclick="order('Bakso Jumbo')">Pesan</button>
         </div>
       </div>
     </div>
 
-    <div class="mcard rv" style="transition-delay:.19s">
-      <div class="mcard-img" style="background:linear-gradient(140deg,#ff6b6b,#991a0a)">
-        🌶️
-        <span class="mbadge" style="background:#ff4444">🔥 Pedas</span>
+    <div class="mc rv" style="transition-delay:.15s">
+      <div class="mc-img">
+        <!-- Unsplash: spicy chili bowl -->
+        <img
+          src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80"
+          alt="Bakso Pedas – bakso dengan sambal rempah pedas"
+          loading="lazy"
+        />
+        <span class="mc-badge" style="background:#c0392b">🌶 Pedas</span>
       </div>
-      <div class="mcard-body">
-        <div class="mcard-name">Bakso Pedas</div>
-        <div class="mcard-desc">Sambal rempah rahasia yang menggigit, dipadukan bakso kenyal — untuk jiwa-jiwa pemberani!</div>
-        <div class="mcard-foot">
-          <span class="mcard-price">Rp 18.000</span>
-          <button class="mcard-btn" onclick="order('Bakso Pedas')">Pesan</button>
+      <div class="mc-body">
+        <div class="mc-name">Bakso Pedas</div>
+        <div class="mc-desc">Bakso disajikan dengan sambal rempah rahasia yang menggigit. Level pedas bisa disesuaikan permintaan.</div>
+        <div class="mc-foot">
+          <span class="mc-price">Rp 18.000</span>
+          <button class="mc-btn" onclick="order('Bakso Pedas')">Pesan</button>
         </div>
       </div>
     </div>
 
-    <div class="mcard rv" style="transition-delay:.26s">
-      <div class="mcard-img" style="background:linear-gradient(140deg,#ffe082,#e08020)">
-        🍝
+    <div class="mc rv" style="transition-delay:.2s">
+      <div class="mc-img">
+        <!-- Unsplash: noodles bowl -->
+        <img
+          src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=600&q=80"
+          alt="Mie Ayam Bakso – mie dengan ayam cincang dan bakso sapi"
+          loading="lazy"
+        />
       </div>
-      <div class="mcard-body">
-        <div class="mcard-name">Mie Ayam Bakso</div>
-        <div class="mcard-desc">Mie lembut kenyal bertemu ayam cincang bumbu dan bakso sapi — satu mangkuk serba ada.</div>
-        <div class="mcard-foot">
-          <span class="mcard-price">Rp 17.000</span>
-          <button class="mcard-btn" onclick="order('Mie Ayam Bakso')">Pesan</button>
+      <div class="mc-body">
+        <div class="mc-name">Mie Ayam Bakso</div>
+        <div class="mc-desc">Mie kuning lembut dengan topping ayam cincang gurih, bakso sapi, dan siraman saus kecap spesial.</div>
+        <div class="mc-foot">
+          <span class="mc-price">Rp 17.000</span>
+          <button class="mc-btn" onclick="order('Mie Ayam Bakso')">Pesan</button>
         </div>
       </div>
     </div>
@@ -575,44 +596,67 @@
   </div>
 </section>
 
+<!-- FULL-BLEED PHOTO STRIP -->
+<div class="photo-strip">
+  <!-- Unsplash: Indonesian street food vendor -->
+  <img
+    src="https://images.unsplash.com/photo-1503764654157-72d979d9af2f?auto=format&fit=crop&w=1600&q=80"
+    alt="Suasana warung bakso Nusantara yang hangat dan ramai"
+    loading="lazy"
+  />
+  <div class="photo-strip-overlay">
+    <div class="pso-text">
+      <div class="sec-label"><span>Filosofi Kami</span></div>
+      <h2 class="sec-title" style="margin:.5rem 0 1rem">Makanan yang<br><em>Menyatukan</em></h2>
+      <p>
+        Dari buruh pabrik sampai direktur, dari mahasiswa sampai kakek nenek —
+        semua duduk di bangku yang sama, makan dari mangkuk yang sama.
+        Itulah bakso. Itulah Nusantara.
+      </p>
+    </div>
+  </div>
+</div>
+
 <!-- TESTIMONI -->
-<section id="testimoni">
+<section id="testimoni" class="sec">
   <div class="testi-hd rv">
-    <span class="lbl">Testimoni Pelanggan</span>
-    <h2 class="sec-title">Mereka <em>Sudah</em><br>Merasakannya</h2>
-    <p class="sec-desc">Kepuasan pelanggan adalah bahan rahasia terpenting di dapur kami.</p>
+    <div class="sec-label"><span>Kata Pelanggan</span></div>
+    <h2 class="sec-title" style="margin-top:.4rem">Mereka Sudah<br><em>Membuktikannya</em></h2>
   </div>
   <div class="testi-grid">
-    <div class="tcard rv" style="transition-delay:.05s">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">Kaldu baksonya beda banget sama yang lain — bening tapi gurih sekali, tidak terasa MSG-nya. Sudah 6 tahun langganan dan tidak pernah bosan!</p>
-      <div class="tcard-prof">
-        <div class="tcard-av">A</div>
+    <div class="tc rv" style="transition-delay:.05s">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"Kaldu baksonya benar-benar beda. Bening tapi dalam rasanya, tidak ada rasa MSG yang mencolok. Sudah 7 tahun saya langganan dan tidak pernah sekali pun kecewa."</p>
+      <div class="tc-sep"></div>
+      <div class="tc-prof">
+        <div class="tc-av">A</div>
         <div>
-          <div class="tcard-name">Angga Pratama</div>
-          <div class="tcard-loc">📍 Depok, Sleman</div>
+          <div class="tc-name">Angga Pratama</div>
+          <div class="tc-loc">Depok, Sleman — pelanggan sejak 2017</div>
         </div>
       </div>
     </div>
-    <div class="tcard rv" style="transition-delay:.12s">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">Bakso Jumbonya luar biasa besar! Satu porsi cukup untuk anak dan saya. Harganya juga sangat masuk akal untuk porsi sebesar itu. Paling favorit!</p>
-      <div class="tcard-prof">
-        <div class="tcard-av">W</div>
+    <div class="tc rv" style="transition-delay:.1s">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"Bakso Jumbonya gila ukurannya! Satu porsi sudah cukup buat kenyang sampai malam. Dan harganya masih sangat wajar untuk porsi dan kualitas seperti itu."</p>
+      <div class="tc-sep"></div>
+      <div class="tc-prof">
+        <div class="tc-av">W</div>
         <div>
-          <div class="tcard-name">Wulan Sari</div>
-          <div class="tcard-loc">📍 Gamping, Sleman</div>
+          <div class="tc-name">Wulan Sari</div>
+          <div class="tc-loc">Gamping, Sleman — pelanggan sejak 2019</div>
         </div>
       </div>
     </div>
-    <div class="tcard rv" style="transition-delay:.19s">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">Pesan via WhatsApp super mudah dan cepat respon. Bakso sampai masih mengepul panas. Bakso Pedasnya level-nya pas, tidak berlebihan tapi terasa!</p>
-      <div class="tcard-prof">
-        <div class="tcard-av">F</div>
+    <div class="tc rv" style="transition-delay:.15s">
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-text">"Pesan lewat WA cepat banget responnya, dan bakso datang masih mengepul. Bakso Pedasnya level-nya pas — pedasnya terasa tapi tidak membunuh rasa baksonya."</p>
+      <div class="tc-sep"></div>
+      <div class="tc-prof">
+        <div class="tc-av">F</div>
         <div>
-          <div class="tcard-name">Fajar Nugroho</div>
-          <div class="tcard-loc">📍 Bantul, Yogyakarta</div>
+          <div class="tc-name">Fajar Nugroho</div>
+          <div class="tc-loc">Bantul, Yogyakarta — pelanggan sejak 2020</div>
         </div>
       </div>
     </div>
@@ -620,62 +664,56 @@
 </section>
 
 <!-- KONTAK -->
-<section id="kontak">
+<section id="kontak" class="sec">
   <div class="kontak-grid">
     <div class="rv-l">
-      <span class="lbl">Hubungi Kami</span>
-      <h2 class="sec-title">Siap Melayani<br><em>Sepenuh Hati</em></h2>
-      <div class="kontak-items">
-        <div class="k-item">
-          <div class="k-ic">📍</div>
+      <div class="sec-label"><span>Hubungi Kami</span></div>
+      <h2 class="sec-title" style="margin:.5rem 0 .8rem">Siap Melayani<br><em>Sepenuh Hati</em></h2>
+      <p class="sec-body">Kunjungi warung kami langsung, atau pesan dari rumah via WhatsApp — kami siap melayani.</p>
+      <div class="krows">
+        <div class="krow">
+          <div class="krow-ic">📍</div>
           <div>
             <strong>Alamat Warung</strong>
             <span>Jl. Nusantara Raya No. 17, Condong Catur<br>Depok, Sleman, Yogyakarta 55283</span>
           </div>
         </div>
-        <div class="k-item">
-          <div class="k-ic">📱</div>
+        <div class="krow">
+          <div class="krow-ic">📱</div>
           <div>
             <strong>WhatsApp & Telepon</strong>
-            <span>0812-3456-7890</span>
+            <span><a href="tel:+6281234567890">0812-3456-7890</a></span>
           </div>
         </div>
-        <div class="k-item">
-          <div class="k-ic">🗺️</div>
+        <div class="krow">
+          <div class="krow-ic">🗺️</div>
           <div>
             <strong>Google Maps</strong>
-            <span><a href="https://maps.google.com/?q=Bakso+Nusantara+Yogyakarta" target="_blank" style="color:var(--merah);font-weight:600;text-decoration:none">Klik untuk petunjuk arah →</a></span>
+            <span><a href="https://maps.google.com/?q=Bakso+Nusantara+Yogyakarta" target="_blank">Buka petunjuk arah →</a></span>
           </div>
         </div>
       </div>
       <a href="https://wa.me/6281234567890?text=Halo!%20Saya%20mau%20pesan%20di%20Bakso%20Nusantara." class="btn-wa" target="_blank">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Chat WhatsApp Sekarang
       </a>
     </div>
-
     <div class="rv-r">
+      <div class="kontak-photo">
+        <!-- Unsplash: warm food restaurant atmosphere -->
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80"
+          alt="Suasana warung Bakso Nusantara"
+          loading="lazy"
+        />
+      </div>
       <div class="jam-box">
-        <h3>⏰ Jam Operasional</h3>
-        <div class="jam-row">
-          <span class="jam-day">Senin – Jumat</span>
-          <span class="jam-time open">08.00 – 21.00</span>
-        </div>
-        <div class="jam-row">
-          <span class="jam-day">Sabtu</span>
-          <span class="jam-time open">07.00 – 22.00</span>
-        </div>
-        <div class="jam-row">
-          <span class="jam-day">Minggu</span>
-          <span class="jam-time open">07.00 – 22.00</span>
-        </div>
-        <div class="jam-row">
-          <span class="jam-day">Hari Libur Nasional</span>
-          <span class="jam-time">08.00 – 20.00</span>
-        </div>
-        <div class="kontak-tip">
-          <span style="font-size:1.5rem">💡</span>
-          <span>Disarankan pesan lewat WhatsApp terlebih dahulu agar stok menu terjamin, terutama di akhir pekan!</span>
+        <h3>⏰ Jam Buka</h3>
+        <div class="jam-rows">
+          <div class="jr"><span class="jr-day">Senin – Jumat</span><span class="jr-time open">08.00 – 21.00</span></div>
+          <div class="jr"><span class="jr-day">Sabtu</span><span class="jr-time open">07.00 – 22.00</span></div>
+          <div class="jr"><span class="jr-day">Minggu</span><span class="jr-time open">07.00 – 22.00</span></div>
+          <div class="jr"><span class="jr-day">Hari Libur Nasional</span><span class="jr-time">08.00 – 20.00</span></div>
         </div>
       </div>
     </div>
@@ -686,43 +724,27 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="f-logo-main">Bakso Nusantara</div>
-      <div class="f-logo-sub">Cita Rasa Asli Indonesia</div>
+      <div class="f-logo">Bakso <span>Nusantara</span></div>
+      <div style="font-size:.7rem;margin-top:.25rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(253,250,244,.35)">Cita Rasa Asli Indonesia</div>
     </div>
-    <div class="f-copy">© 2024 Bakso Nusantara. Hak cipta dilindungi.</div>
-    <div class="f-socials">
-      <a href="#" class="f-soc" title="Instagram">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    <div class="f-copy">© 2024 Bakso Nusantara. Yogyakarta, Indonesia.</div>
+    <div class="f-soc">
+      <a href="#" class="fsb" title="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       </a>
-      <a href="#" class="f-soc" title="TikTok">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.23a8.13 8.13 0 0 0 4.77 1.52V7.3a4.85 4.85 0 0 1-1.01-.61z"/></svg>
+      <a href="#" class="fsb" title="TikTok">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.23a8.13 8.13 0 0 0 4.77 1.52V7.3a4.85 4.85 0 0 1-1.01-.61z"/></svg>
       </a>
     </div>
   </div>
 </footer>
 
 <script>
-  // Navbar
-  const nb = document.getElementById('navbar');
-  window.addEventListener('scroll', () => nb.classList.toggle('scrolled', scrollY > 30));
-
-  // Mobile nav
-  function toggleNav() {
-    const m = document.getElementById('mnav');
-    m.style.display = m.style.display === 'none' ? 'block' : 'none';
-  }
-  function closeNav() { document.getElementById('mnav').style.display = 'none'; }
-
-  // Scroll reveal
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => obs.observe(el));
-
-  // Order
-  function order(menu) {
-    window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(`Halo! Saya mau pesan ${menu} di Bakso Nusantara. Bisa diproses?`)}`, '_blank');
-  }
+  function toggleNav(){document.getElementById('mnav').style.display=document.getElementById('mnav').style.display==='none'?'block':'none'}
+  function closeNav(){document.getElementById('mnav').style.display='none'}
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>obs.observe(el));
+  function order(m){window.open(`https://wa.me/6281234567890?text=${encodeURIComponent('Halo! Saya mau pesan '+m+' di Bakso Nusantara. Bisa diproses?')}`,'_blank')}
 </script>
 </body>
 </html>
